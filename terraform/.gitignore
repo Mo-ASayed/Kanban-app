@@ -1,33 +1,3 @@
-*.sqlite
-*.sqlite-journal
-*.sqlite-shm
-*.sqlite-wal
-.buildpath
-.project
-/.settings/
-.idea
-.vscode
-/nbproject/
-.DS_Store
-ehthumbs.db
-Icon?
-Thumbs.db
-*.swp
-.*.swp
-*~
-*.out
-*.log
-.vagrant
-data/files
-data/cache
-data/config.php
-*.bak
-/config.php
-!docker/var/wwww/app/config.php
-node_modules
-.phpunit.result.cache
-app/version.txt
-
 # Local .terraform directories
 **/.terraform/*
 
