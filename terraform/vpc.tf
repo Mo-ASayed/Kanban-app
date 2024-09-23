@@ -55,20 +55,13 @@ resource "aws_route_table_association" "kanban_subnet2_rt_assoc" {
   route_table_id = aws_route_table.kanban_public_rt.id
 }
 
-resource "aws_security_group" "kanban_ecs_sg" {
+resource "aws_security_group" "kanban_eks_sg" {
   name   = var.security_group_name
   vpc_id = aws_vpc.kanban_vpc.id
 
   ingress {
     from_port   = 80
     to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 3000
-    to_port     = 3000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
