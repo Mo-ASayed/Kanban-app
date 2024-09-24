@@ -104,7 +104,7 @@ resource "aws_iam_role" "aws-load-balancer-controller-role" {
 
 resource "aws_iam_policy" "aws_load_balancer_controller_policy" {
   name   = "AWSLoadBalancerControllerIAMPolicy"
-  policy = file("${path.module}/iam_policy.json")  
+  policy = file("${path.module}/iam_policy.json")
 }
 
 resource "aws_iam_role_policy_attachment" "aws_load_balancer_controller_attach" {
