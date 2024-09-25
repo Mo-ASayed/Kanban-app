@@ -33,3 +33,21 @@ variable "security_group_name" {
   type        = string
   default     = "kanban-ecs-sg"
 }
+
+variable "private_subnet_cidrs" {
+  description = "The CIDR blocks for private subnets"
+  type        = list(string)
+  default     = ["10.0.3.0/24"]
+}
+
+variable "private_availability_zones" {
+  description = "The availability zones for the private subnets"
+  type        = list(string)
+  default     = ["us-east-1a"] 
+}
+
+variable "eip_count" {
+  description = "Number of Elastic IPs to allocate"
+  type        = number
+  default     = 2  # Change this based on your needs
+}

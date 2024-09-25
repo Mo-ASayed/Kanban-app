@@ -2,8 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kanban-app
-  labels:
-    app: kanban
+  namespace: kube-system
 spec:
   replicas: 1
   selector:
@@ -14,9 +13,9 @@ spec:
       labels:
         app: kanban
     spec:
-      serviceAccountName: aws-load-balancer-controller
+      serviceAccountName: aws-load-balancer-controller 
       containers:
-      - name: kanban
-        image: 767398132018.dkr.ecr.us-east-1.amazonaws.com/mohammedsayed/kanban-app
-        ports:
-        - containerPort: 80
+        - name: kanban
+          image: 767398132018.dkr.ecr.us-east-1.amazonaws.com/mohammedsayed/kanban-app
+          ports:
+            - containerPort: 80

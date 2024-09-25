@@ -84,3 +84,47 @@ resource "aws_security_group" "kanban_eks_sg" {
     Name = var.security_group_name
   }
 }
+
+resource "aws_subnet" "kanban_private_subnet" {
+  vpc_id                  = aws_vpc.kanban_vpc.id
+  cidr_block              = var.private_subnet_cidrs[0]
+  availability_zone       = var.private_availability_zones[0]
+  map_public_ip_on_launch = false  
+  tags = {
+    Name = "kanban-private-subnet"
+    "kubernetes.io/role/internal-elb" = "1"  
+  }
+}
+
+resource "aws_route_table" "kanban_private_rt" {
+  vpc_id = aws_vpc.kanban_vpc.id
+  tags = {
+    Name = "kanban-private-rt"
+  }
+}
+
+resource "aws_route_table_association" "kanban_private_subnet_rt_assoc" {
+  subnet_id      = aws_subnet.kanban_private_subnet.id
+  route_table_id = aws_route_table.kanban_private_rt.id
+}
+
+resource "aws_eip" "kanban_eip" {
+  count = var.eip_count
+
+  tags = {
+    Name = "kanban-eip-${count.index + 1}"
+  }
+}
+
+resource "aws_network_interface_attachment" "example_attachment" {
+  count             = var.eip_count
+  instance_id      = aws_instance.example.id  # Replace with your instance
+  network_interface_id = aws_network_interface.example.id  # Replace with your network interface
+  device_index      = count.index
+}
+
+resource "aws_eip_association" "example_association" {
+  count          = var.eip_count
+  instance_id    = aws_instance.example.id  # Replace with your instance
+  allocation_id   = aws_eip.kanban_eip[count.index].id
+}
