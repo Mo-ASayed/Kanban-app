@@ -43,11 +43,11 @@ variable "private_subnet_cidrs" {
 variable "private_availability_zones" {
   description = "The availability zones for the private subnets"
   type        = list(string)
-  default     = ["us-east-1a"] 
+  default     = ["us-east-1a"]
 }
 
 variable "eip_count" {
-  description = "Number of Elastic IPs to allocate"
+  description = "The number of Elastic IPs to create"
   type        = number
-  default     = 2  # Change this based on your needs
+  default     = 1
 }
