@@ -15,5 +15,5 @@ kubectl apply -f kubernetes/manifests/kanban-ingress.yaml
   --set serviceAccount.create=false \
   --set serviceAccount.name=aws-load-balancer-controller \
   --set region=us-east-1 \
-  --set vpcId=vpc-011c6631a3b103f06 \
+  --set vpcId=vpc-0250576ee0038b662 \
   -n kube-system
