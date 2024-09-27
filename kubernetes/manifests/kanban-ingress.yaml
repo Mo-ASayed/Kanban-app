@@ -23,4 +23,10 @@ spec:
                 name: kanban-service
                 port:
                   number: 80
- 
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kanban-service
+                port:
+                  number: 80
