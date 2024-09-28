@@ -41,7 +41,6 @@ resource "aws_iam_role_policy_attachment" "eks_vpc_resource_controller_policy" {
   role       = aws_iam_role.eks_cluster_role.name
 }
 
-# Node Group
 resource "aws_eks_node_group" "kanban_node_group" {
   cluster_name    = aws_eks_cluster.kanban_cluster.name
   node_group_name = "kanban-node-group"
