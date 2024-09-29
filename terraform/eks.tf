@@ -50,8 +50,8 @@ resource "aws_eks_node_group" "kanban_node_group" {
     aws_subnet.kanban_public_subnet_2.id,
   ]
   scaling_config {
-    desired_size = 2
-    max_size     = 3
+    desired_size = 1
+    max_size     = 2
     min_size     = 1
   }
 }
@@ -90,11 +90,16 @@ resource "aws_iam_role" "aws-load-balancer-controller-role" {
     Version = "2012-10-17",
     Statement = [
       {
-        Effect = "Allow",
-        Principal = {
-          Service = "eks.amazonaws.com"
-        },
-        Action = "sts:AssumeRole"
+        "Effect": "Allow",
+			"Principal": {
+				"Federated": "arn:aws:iam::767398132018:oidc-provider/oidc.eks.us-east-1.amazonaws.com/id/9F5EB338299BE34D24F8AAEB1254D04E"
+			},
+			"Action": "sts:AssumeRoleWithWebIdentity",
+			"Condition": {
+				"StringEquals": {
+					"oidc.eks.us-east-1.amazonaws.com/id/9F5EB338299BE34D24F8AAEB1254D04E:sub": "system:serviceaccount:kube-system:aws-load-balancer-controller"
+				}
+      }
       }
     ]
   })
