@@ -12,6 +12,7 @@ resource "aws_subnet" "kanban_public_subnet_1" {
   map_public_ip_on_launch = true
   tags = {
     Name = "kanban-public-subnet-1"
+    "kubernetes.io/role/elb" = "1"
   }
 }
 
@@ -22,8 +23,10 @@ resource "aws_subnet" "kanban_public_subnet_2" {
   map_public_ip_on_launch = true
   tags = {
     Name = "kanban-public-subnet-2"
+    "kubernetes.io/role/elb" = "2"
   }
 }
+
 
 resource "aws_internet_gateway" "kanban_igw" {
   vpc_id = aws_vpc.kanban_vpc.id
