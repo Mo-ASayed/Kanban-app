@@ -23,7 +23,7 @@ resource "aws_subnet" "kanban_public_subnet_2" {
   map_public_ip_on_launch = true
   tags = {
     Name = "kanban-public-subnet-2"
-    "kubernetes.io/role/elb" = "2"
+    "kubernetes.io/role/elb" = "1"
   }
 }
 

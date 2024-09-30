@@ -6,9 +6,9 @@ metadata:
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
     service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
-    service.beta.kubernetes.io/aws-load-balancer-eip-allocations: eipalloc-07f01b1f183156ed8, eipalloc-0b5780eaf534b64db
+    service.beta.kubernetes.io/aws-load-balancer-eip-allocations: eipalloc-094a309f3876dae25, eipalloc-069d0bd30bad887ed
     service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
-    service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-04f0860784edd30f9, subnet-0bc48575e1bc31f50
+    service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-07a3048de865cc242, subnet-00efcad1c498090ad
     service.beta.kubernetes.io/aws-load-balancer-type: nlb
 spec:
   type: LoadBalancer
