@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kanban App on Kubernetes with Terraform and ArgoCD</title>
 </head>
 <body>
 
 <h1>Kanban App on Kubernetes with Terraform and ArgoCD</h1>
 
 <p>Welcome to my <strong>Kanban Board App</strong> repository! 🎉</p>
+
 
 <p>This app is a simple, yet powerful tool that helps you organise and manage tasks using the <strong>Kanban method</strong>. It's designed to keep everything you need in one place, track progress, and improve productivity – all hosted on a robust <strong>Kubernetes</strong> infrastructure. Think of it as your own digital task board, similar to what you'd see in tools like Trello!</p>
 
