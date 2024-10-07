@@ -10,11 +10,10 @@ on:
 
 env:
   AWS_REGION: us-east-1                
-  ECR_REPOSITORY: mohammedsayed/threat-composer         
-  ECS_SERVICE: tm-service                 
-  ECS_CLUSTER: tm-cluster                 
-  ECS_TASK_DEFINITION: tm-task 
-  CONTAINER_NAME: tm-container          
+  ECR_REPOSITORY: mohammedsayed/kanban-app           
+  EKS_CLUSTER: kanban-cluster   
+  DEPLOYMENT_NAME: kanban-deployment  
+  CONTAINER_NAME: tm-container
 
 jobs:
   build-and-deploy:
@@ -51,8 +50,16 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: 767398132018.dkr.ecr.us-east-1.amazonaws.com
-          ECR_REPOSITORY: mohammedsayed/kanban-app
+          ECR_REPOSITORY: ${{ env.ECR_REPOSITORY }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-          # echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:latest" >> $GITHUB_OUTPUT
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:latest" >> $GITHUB_OUTPUT
+
+      - name: Update Kubernetes Deployment
+        env:
+          KUBECONFIG: ~/.kube/config
+        run: |
+          aws eks update-kubeconfig --name ${{ env.EKS_CLUSTER }} --region ${{ env.AWS_REGION }}
+          kubectl set image deployment/${{ env.DEPLOYMENT_NAME }} ${{ env.CONTAINER_NAME }}=$ECR_REGISTRY/$ECR_REPOSITORY:latest
+          kubectl rollout status deployment/${{ env.DEPLOYMENT_NAME }}
