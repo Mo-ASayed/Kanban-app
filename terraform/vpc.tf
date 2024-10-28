@@ -11,7 +11,7 @@ resource "aws_subnet" "kanban_public_subnet_1" {
   availability_zone       = var.availability_zones[0]
   map_public_ip_on_launch = true
   tags = {
-    Name = "kanban-public-subnet-1"
+    Name                     = "kanban-public-subnet-1"
     "kubernetes.io/role/elb" = "1"
   }
 }
@@ -22,7 +22,7 @@ resource "aws_subnet" "kanban_public_subnet_2" {
   availability_zone       = var.availability_zones[1]
   map_public_ip_on_launch = true
   tags = {
-    Name = "kanban-public-subnet-2"
+    Name                     = "kanban-public-subnet-2"
     "kubernetes.io/role/elb" = "1"
   }
 }
@@ -92,10 +92,10 @@ resource "aws_subnet" "kanban_private_subnet" {
   vpc_id                  = aws_vpc.kanban_vpc.id
   cidr_block              = var.private_subnet_cidrs[0]
   availability_zone       = var.private_availability_zones[0]
-  map_public_ip_on_launch = false  
+  map_public_ip_on_launch = false
   tags = {
-    Name = "kanban-private-subnet"
-    "kubernetes.io/role/internal-elb" = "1"  
+    Name                              = "kanban-private-subnet"
+    "kubernetes.io/role/internal-elb" = "1"
   }
 }
 
